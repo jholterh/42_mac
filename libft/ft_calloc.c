@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/17 19:41:54 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/19 14:42:24 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+// like malloc but sets everything to 0
 
-void	free_string(char **str, int str_count)
+#include "libft.h"
+
+void	*ft_calloc(size_t count, size_t size)
 {
-	int	i;
+	unsigned char	*tmp;
+	size_t			i;
 
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	tmp = malloc(count * size);
+	if (tmp == NULL)
+		return (NULL);
+	i = 0;
+	while (i < count * size)
+	{
+		tmp[i] = 0;
+		i++;
+	}
+	return (tmp);
 }

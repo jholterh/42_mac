@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/26 12:45:15 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/26 14:37:10 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "libft.h"
 
-void	free_string(char **str, int str_count)
+void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	int	i;
-
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	if (!*lst)
+		ft_lstadd_front(lst, new);
+	else
+		ft_lstlast(*lst)->next = new;
 }

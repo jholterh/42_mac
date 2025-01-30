@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/26 12:37:36 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/26 14:38:53 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "libft.h"
 
-void	free_string(char **str, int str_count)
+t_list	*ft_lstnew(void *content)
 {
-	int	i;
+	t_list	*new_node;
 
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!new_node)
+		return (NULL);
+	new_node->content = content;
+	new_node->next = NULL;
+	return (new_node);
 }

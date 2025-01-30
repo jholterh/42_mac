@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/16 19:37:52 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/19 14:36:17 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+// finds first appearance of char in str
 
-void	free_string(char **str, int str_count)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	char	*str;
 
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	str = (char *)s;
+	while (*str)
+	{
+		if ((char)c == *str)
+			return (str);
+		str++;
+	}
+	if (*str == (char)c)
+		return (str);
+	return (NULL);
 }

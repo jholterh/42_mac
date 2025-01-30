@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/20 14:12:40 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/20 14:25:24 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "libft.h"
 
-void	free_string(char **str, int str_count)
+char	*ft_strmapi(const char *s, char (*f)(unsigned int, char))
 {
-	int	i;
+	unsigned int	i;
+	char			*str;
 
+	str = (char *)malloc((ft_strlen(s) + 1) * sizeof(char));
 	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
+	{
+		str[i] = (*f)(i, s[i]);
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
 }

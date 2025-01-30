@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/13 15:29:21 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/19 14:30:58 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+// copies maximum n bytes from src to dest
 
-void	free_string(char **str, int str_count)
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t num)
 {
-	int	i;
+	unsigned char		*d;
+	const unsigned char	*s;
 
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	if (!dst && !src)
+		return (dst);
+	d = (unsigned char *)dst;
+	s = (const unsigned char *)src;
+	while (num > 0)
+	{
+		*(d++) = *(s++);
+		num--;
+	}
+	return (dst);
 }

@@ -1,25 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/20 15:34:53 by jholterh          #+#    #+#             */
+/*   Updated: 2024/12/11 11:20:21 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+#include "libft.h"
 
-void	free_string(char **str, int str_count)
+int	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
+	int		counter;
+	char	digit;
 
-	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+	counter = 0;
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return (11);
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		counter++;
+		n = -n;
+	}
+	if (n > 9)
+		counter += ft_putnbr_fd(n / 10, fd);
+	digit = (n % 10) + '0';
+	write(fd, &digit, 1);
+	counter++;
+	return (counter);
 }

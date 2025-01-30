@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   helper_functions_check.c                           :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jholterh <jholterh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/28 16:22:25 by jholterh          #+#    #+#             */
-/*   Updated: 2025/01/30 17:19:50 by jholterh         ###   ########.fr       */
+/*   Created: 2024/11/18 18:58:01 by jholterh          #+#    #+#             */
+/*   Updated: 2024/11/20 16:41:20 by jholterh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "solong.h"
+// concentrates strings and allocates memory
 
-void	free_string(char **str, int str_count)
+#include "libft.h"
+
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	int	i;
+	char	*str;
+	size_t	str_len;
+	size_t	i;
 
+	str_len = ft_strlen(s1) + ft_strlen(s2);
+	str = (char *)malloc((str_len + 1) * sizeof(char));
 	if (!str)
-		return ;
-	i = -1;
-	while (++i < str_count)
-		free(str[i]);
-	free(str);
+		return (NULL);
+	i = 0;
+	while (*s1)
+		str[i++] = *s1++;
+	while (*s2)
+		str[i++] = *s2++;
+	str[i] = '\0';
+	return (str);
 }
